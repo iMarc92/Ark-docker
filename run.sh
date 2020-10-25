@@ -3,6 +3,12 @@ echo "##########################################################################
 echo "# Ark Server - " `date`
 echo "# UID $UID - GID $GID"
 echo "###########################################################################"
+
+echo "Servermap:  ${SERVERMAP}"
+echo "Backuponstart:  ${BACKUPONSTART}"
+echo "Updateonstart:  ${UPDATEONSTART}"
+echo "Updateonstart without caps: ${UPDATEONSTART}"
+
 [ -p /tmp/FIFO ] && rm /tmp/FIFO
 mkfifo /tmp/FIFO
 
@@ -42,7 +48,7 @@ cp /home/steam/crontab /ark/template/crontab
 
 
 
-if [ ! -d /ark/server  ] || [ ! -f /ark/server/arkversion ];then 
+if [ ! -d /ark/server  ] || [ ! -f /ark/server/version.txt ];then 
 	echo "No game files found. Installing..."
 	mkdir -p /ark/server/ShooterGame/Saved/SavedArks
 	mkdir -p /ark/server/ShooterGame/Content/Mods
@@ -51,7 +57,6 @@ if [ ! -d /ark/server  ] || [ ! -f /ark/server/arkversion ];then
 	arkmanager install
 	# Create mod dir
 else
-
 	if [ ${BACKUPONSTART} -eq 1 ] && [ "$(ls -A server/ShooterGame/Saved/SavedArks/)" ]; then 
 		echo "[Backup]"
 		arkmanager backup
@@ -72,10 +77,12 @@ else
 fi
 
 # Launching ark server
-if [ $UPDATEONSTART -eq 0 ]; then
-	arkmanager start -noautoupdate
+if [ ${UPDATEONSTART} -eq 0 ]; then
+	arkmanager start --noautoupdate
+	echo "launch without update:  ${UPDATEONSTART} "
 else
 	arkmanager start
+	echo "launch with update:  ${UPDATEONSTART} "
 fi
 
 

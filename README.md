@@ -2,13 +2,16 @@
 
 Docker build for managing an ARK: Survival Evolved server.
 
-Forged from [TuRz4m/Ark-docker](https://github.com/TuRz4m/Ark-docker) 
+Forged from [CWollinger/Ark-docker](https://github.com/CWollinger/Ark-docker) 
 
-This image uses [Ark Server Tools](https://github.com/FezVrasta/ark-server-tools) to manage an ark server.
+This image uses [Ark Server Tools](https://github.com/arkmanager/ark-server-tools) to manage an ark server.
 
 *If you use an old volume, get the new arkmanager.cfg in the template directory.*  
 
 
+## changes to CWollinger
+ - I added the newest arkserver tools and had to change some things to work with latest ubuntu image
+ - CWollinger used an more than 1 year old ark-server-tools version, so i thought it was an good idea to bring this easy to use Docker the newest ubuntu & ark-server-tools features :-)
 
 ## Features
  - Easy install (no steamcmd / lib32... to install)

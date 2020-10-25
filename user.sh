@@ -1,5 +1,10 @@
 #!/bin/sh
 
+echo "Servermap:  ${SERVERMAP}"
+echo "Backuponstart:  ${BACKUPONSTART}"
+echo "Updateonstart:  ${UPDATEONSTART}"
+echo "Updateonstart without caps: ${UPDATEONSTART}"
+
 # Change the UID if needed
 if [ ! "$(id -u steam)" -eq "$UID" ]; then 
 	echo "Changing steam uid to $UID."
@@ -18,4 +23,4 @@ chown -R steam:steam /ark /home/steam
 chmod -R 777 /root/
 
 # Launch run.sh with user steam (-p allow to keep env variables)
-su -p - steam -c /home/steam/run.sh
+su -p steam -c /home/steam/run.sh
